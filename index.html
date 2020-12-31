@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css">
+    <title>Grade Calculate</title>
+</head>
+
+<body>
+    <div class="paper container" id="app">
+        <nav class="border fixed split-nav">
+            <div class="nav-brand">
+                <h3><a href="#">Grade Calculator</a></h3>
+            </div>
+            <div class="collapsible">
+                <input id="collapsible1" type="checkbox" name="collapsible1">
+                <label for="collapsible1">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </label>
+                <div class="collapsible-body">
+                    <ul class="inline">
+                        <li><a href="https://github.com/siraom15" target="_blank">Github</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <h3 class="text-center">Grade Calculator</h3>
+        <hr>
+        <div class="row" v-for="(item,index) in grade">
+            <div class="col ">
+                <label for="">Subject Name</label>
+                <input class="input-block" type="text" id="subjectName-1" placeholder="(not required)"
+                    v-model="grade[index].subject_name">
+            </div>
+            <div class="col ">
+                <label for="">Credit(s)</label>
+                <input class="input-block" type="number" id="" value="0" min="0" v-model="grade[index].credit">
+            </div>
+            <div class="col ">
+                <label for="">Grade(require)</label>
+                <select v-model="grade[index].grade">
+                    <!-- <option value="0" selected>Select Grade</option> -->
+                    <option value="4">A</option>
+                    <option value="3.5">B+</option>
+                    <option value="3">B</option>
+                    <option value="2.5">C+</option>
+                    <option value="2">C</option>
+                    <option value="1.5">D+</option>
+                    <option value="1">D</option>
+                    <option value="0">F</option>
+                </select>
+            </div>
+            <div class="col">
+                <label for="">Delete</label>
+                <br>
+                <button class="btn-danger btn-small " v-on:click="removeSubject(index)">Delete</button>
+            </div>
+        </div>
+        <button class="btn-small" v-on:click="addSubject">add subject</button>
+        <button class="btn-small" v-on:click="calculateGrade">Get Result</button>
+        <hr>
+        <small>**Result show only the subjects that have grade **</small>
+
+        <h3 class="text-center">Result</h3>
+        <div class="row">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>subject name</th>
+                        <th>credit(s)</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-if="grade.length < 1">
+                        <td colspan="12">No data</td>
+                    </tr>
+                    <tr v-for="(item,index) in grade" v-if="item.grade != null">
+                        <td>{{ index + 1 }}</td>
+                        <td>{{ item.subject_name }}</td>
+                        <td>{{ item.credit }}</td>
+                        <td>{{ item.grade }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="row text-center">
+
+            <div class="col">
+                <h5 class="text-center">sum Of Grade : {{ sumOfGrade }}</h5>
+            </div>
+            <div class="col">
+                <h5 class="text-center">sum Of Credit : {{ sumOfCredit }}</h5>
+            </div>
+            <div class="col">
+                <h4 class="text-center "> <U> Average : {{ avgGrade }}</U></h4>
+            </div>
+        </div>
+        <p class="text-center">© aommie 2021</p>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="./app.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.js"
+    integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+<script>
+
+</script>
+
+</html>
