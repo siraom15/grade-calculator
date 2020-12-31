@@ -5,14 +5,7 @@ var app = new Vue({
     data: {
         message: 'Hello Vue!',
         subject_count: 1,
-        grade: [
-            {
-                // subject_id: 1,
-                subject_name: null,
-                credit: 1,
-                grade: null
-            }
-        ],
+        grade: [],
         sumOfGrade: 0,
         sumOfCredit: 0,
         avgGrade: 0
