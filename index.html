@@ -33,6 +33,18 @@
         <h3 class="text-center">Grade Calculator</h3>
         <hr>
         <div class="row" v-for="(item,index) in grade">
+            <div class="col">
+                <fieldset class="form-group">
+                    <label class="paper-switch-2-label">
+                      Use for Calculate
+                    </label>
+                    <br>
+                    <label class="paper-switch-2">
+                      <input id="paperSwitch11" type="checkbox" checked v-model="grade[index].isUse" />
+                      <span class="paper-switch-slider round"></span>
+                    </label>
+                  </fieldset>
+            </div>
             <div class="col ">
                 <label for="">Subject Name</label>
                 <input class="input-block" type="text" id="subjectName-1" placeholder="(not required)"
@@ -82,7 +94,7 @@
                     <tr v-if="grade.length < 1">
                         <td colspan="12">No data</td>
                     </tr>
-                    <tr v-for="(item,index) in grade" v-if="item.grade != null">
+                    <tr v-for="(item,index) in grade" v-if="item.grade != null && item.isUse == true">
                         <td>{{ index + 1 }}</td>
                         <td>{{ item.subject_name }}</td>
                         <td>{{ item.credit }}</td>

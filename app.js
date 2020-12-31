@@ -5,7 +5,7 @@ var app = new Vue({
         grade: [],
         sumOfGrade: 0,
         sumOfCredit: 0,
-        avgGrade: 0
+        avgGrade: 0,
     },
     methods: {
         addSubject: function () {
@@ -19,7 +19,7 @@ var app = new Vue({
         },
         createNewSubject: function () {
             let temp = {
-                // subject_id: this.subject_count,
+                isUse: true,
                 subject_name: null,
                 credit: 1,
                 grade: null
@@ -33,8 +33,7 @@ var app = new Vue({
                 let sumOfCredit = 0
                 let sumOfGrade = 0
                 for (let index = 0; index < this.grade.length; index++) {
-                    // const element = array[index];
-                    if (this.grade[index].grade != null) {
+                    if (this.grade[index].grade != null && this.grade[index].isUse == true) {
                         sumOfCredit -= -(this.grade[index].credit)
                         sumOfGrade -= -(this.grade[index].credit * this.grade[index].grade)
                     }
@@ -42,6 +41,8 @@ var app = new Vue({
                 this.sumOfCredit = sumOfCredit
                 this.sumOfGrade = sumOfGrade
                 this.avgGrade = sumOfGrade / sumOfCredit
+
+                console.log(JSON.parse(JSON.stringify(this.grade)));
             },
             deep: true
         }
