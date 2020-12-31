@@ -1,9 +1,6 @@
-// var subject_count = 1;
-
 var app = new Vue({
     el: '#app',
     data: {
-        message: 'Hello Vue!',
         subject_count: 1,
         grade: [],
         sumOfGrade: 0,
@@ -28,24 +25,6 @@ var app = new Vue({
                 grade: null
             }
             this.grade.push(temp)
-        },
-        calculateGrade: function () {
-            let sumOfCredit = 0
-            let sumOfGrade = 0
-            for (let index = 0; index < this.grade.length; index++) {
-                // const element = array[index];
-                if (this.grade[index].grade != null) {
-                    sumOfCredit -= -(this.grade[index].credit)
-                    sumOfGrade -= -(this.grade[index].credit * this.grade[index].grade)
-                }
-            }
-            console.log("sumC" + sumOfCredit);
-            console.log("sumG" + sumOfGrade);
-
-            this.sumOfCredit = sumOfCredit
-            this.sumOfGrade = sumOfGrade
-            this.avgGrade = sumOfGrade / sumOfCredit
-            console.log(this.avgGrade);
         }
     },
     watch: {
@@ -60,13 +39,9 @@ var app = new Vue({
                         sumOfGrade -= -(this.grade[index].credit * this.grade[index].grade)
                     }
                 }
-                console.log("sumC" + sumOfCredit);
-                console.log("sumG" + sumOfGrade);
-
                 this.sumOfCredit = sumOfCredit
                 this.sumOfGrade = sumOfGrade
                 this.avgGrade = sumOfGrade / sumOfCredit
-                console.log(this.avgGrade);
             },
             deep: true
         }
